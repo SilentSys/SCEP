@@ -22,7 +22,7 @@
 Public Class Form1
     Dim SCEP As New SCEP
     Dim Loaded As Boolean = False
-    Const Version As String = "1.0"
+    Const Version As String = "1.1"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SCEPLoadSettings()
@@ -41,6 +41,7 @@ Public Class Form1
 
         CheckForUpdates()
     End Sub
+
     Private Sub SCEPEnabledCheck_CheckedChanged(sender As Object, e As EventArgs) Handles SCEPEnabledCheck.CheckedChanged
         If Loaded Then
             If SCEPEnabledCheck.Checked Then
@@ -100,6 +101,30 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub LockTradesCheck_CheckedChanged(sender As Object, e As EventArgs) Handles LockTradesCheck.CheckedChanged
+        SCEP.LockDownTrades = LockTradesCheck.Checked
+        SCEPSaveSettings()
+    End Sub
+
+    Private Sub TradeTfCheck_CheckedChanged(sender As Object, e As EventArgs) Handles TradeTfCheck.CheckedChanged
+        SCEP.UseTradeTF = TradeTfCheck.Checked
+        SCEPSaveSettings()
+    End Sub
+
+    Private Sub WebProtCheck_CheckedChanged(sender As Object, e As EventArgs) Handles WebProtCheck.CheckedChanged
+        SCEP.WebsiteProtection = WebProtCheck.Checked
+        If WebProtCheck.Checked Then
+            SCEP.LoadOnStart()
+        End If
+        SCEPSaveSettings()
+    End Sub
+
+    Private Sub SteamOnlyCheck_CheckedChanged(sender As Object, e As EventArgs) Handles SteamOnlyCheck.CheckedChanged
+        SCEP.SteamAppOnly = SteamOnlyCheck.Checked
+        SCEPSaveSettings()
+        SCEP.EnableSteamOnly()
+    End Sub
+
     Private Sub SCEPSaveSettings()
         If Loaded Then
             My.Settings.SCEPEnabled = SCEPEnabledCheck.Checked
@@ -108,6 +133,10 @@ Public Class Form1
             My.Settings.SCEPInvites = InvitesEnabledCheck.Checked
             My.Settings.SCEPTrades = TradesEnabledCheck.Checked
             My.Settings.SCEPMinimize = MinimizeCheck.Checked
+            My.Settings.SCEPLockTrades = LockTradesCheck.Checked
+            My.Settings.SCEPTradeTf = TradeTfCheck.Checked
+            My.Settings.SCEPWebProtect = WebProtCheck.Checked
+            My.Settings.SCEPSteamOnly = SteamOnlyCheck.Checked
             My.Settings.Save()
         End If
     End Sub
@@ -119,7 +148,10 @@ Public Class Form1
         InvitesEnabledCheck.Checked = My.Settings.SCEPInvites
         TradesEnabledCheck.Checked = My.Settings.SCEPTrades
         MinimizeCheck.Checked = My.Settings.SCEPMinimize
-
+        LockTradesCheck.Checked = My.Settings.SCEPLockTrades
+        TradeTfCheck.Checked = My.Settings.SCEPTradeTf
+        WebProtCheck.Checked = My.Settings.SCEPWebProtect
+        SteamOnlyCheck.Checked = My.Settings.SCEPSteamOnly
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -147,5 +179,9 @@ Public Class Form1
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub ReporBugLink_Click(sender As Object, e As EventArgs) Handles ReportLink.Click
+        Process.Start("http://steamcep.com/report/")
     End Sub
 End Class

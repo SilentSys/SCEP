@@ -26,8 +26,11 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.VersionLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ReportLink = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SCEPTabControl = New System.Windows.Forms.TabControl()
         Me.GeneralTab = New System.Windows.Forms.TabPage()
+        Me.SteamOnlyCheck = New System.Windows.Forms.CheckBox()
+        Me.WebProtCheck = New System.Windows.Forms.CheckBox()
         Me.MinimizeCheck = New System.Windows.Forms.CheckBox()
         Me.StartupCheck = New System.Windows.Forms.CheckBox()
         Me.SCEPEnabledCheck = New System.Windows.Forms.CheckBox()
@@ -35,6 +38,8 @@ Partial Class Form1
         Me.InvitesEnabledCheck = New System.Windows.Forms.CheckBox()
         Me.ProfilesEnabledCheck = New System.Windows.Forms.CheckBox()
         Me.TradesTab = New System.Windows.Forms.TabPage()
+        Me.TradeTfCheck = New System.Windows.Forms.CheckBox()
+        Me.LockTradesCheck = New System.Windows.Forms.CheckBox()
         Me.TradesEnabledCheck = New System.Windows.Forms.CheckBox()
         Me.SCEPNotifyIcon = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.StatusStrip1.SuspendLayout()
@@ -46,8 +51,8 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VersionLabel})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 76)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VersionLabel, Me.ReportLink})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 97)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(220, 22)
         Me.StatusStrip1.SizingGrip = False
@@ -59,6 +64,13 @@ Partial Class Form1
         Me.VersionLabel.Name = "VersionLabel"
         Me.VersionLabel.Size = New System.Drawing.Size(0, 17)
         '
+        'ReportLink
+        '
+        Me.ReportLink.IsLink = True
+        Me.ReportLink.Name = "ReportLink"
+        Me.ReportLink.Size = New System.Drawing.Size(101, 17)
+        Me.ReportLink.Text = "Report A Website!"
+        '
         'SCEPTabControl
         '
         Me.SCEPTabControl.Controls.Add(Me.GeneralTab)
@@ -68,21 +80,43 @@ Partial Class Form1
         Me.SCEPTabControl.Location = New System.Drawing.Point(0, 0)
         Me.SCEPTabControl.Name = "SCEPTabControl"
         Me.SCEPTabControl.SelectedIndex = 0
-        Me.SCEPTabControl.Size = New System.Drawing.Size(220, 98)
+        Me.SCEPTabControl.Size = New System.Drawing.Size(220, 119)
         Me.SCEPTabControl.TabIndex = 4
         '
         'GeneralTab
         '
+        Me.GeneralTab.Controls.Add(Me.SteamOnlyCheck)
+        Me.GeneralTab.Controls.Add(Me.WebProtCheck)
         Me.GeneralTab.Controls.Add(Me.MinimizeCheck)
         Me.GeneralTab.Controls.Add(Me.StartupCheck)
         Me.GeneralTab.Controls.Add(Me.SCEPEnabledCheck)
         Me.GeneralTab.Location = New System.Drawing.Point(4, 22)
         Me.GeneralTab.Name = "GeneralTab"
         Me.GeneralTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.GeneralTab.Size = New System.Drawing.Size(212, 72)
+        Me.GeneralTab.Size = New System.Drawing.Size(212, 93)
         Me.GeneralTab.TabIndex = 0
         Me.GeneralTab.Text = "General"
         Me.GeneralTab.UseVisualStyleBackColor = True
+        '
+        'SteamOnlyCheck
+        '
+        Me.SteamOnlyCheck.AutoSize = True
+        Me.SteamOnlyCheck.Location = New System.Drawing.Point(6, 52)
+        Me.SteamOnlyCheck.Name = "SteamOnlyCheck"
+        Me.SteamOnlyCheck.Size = New System.Drawing.Size(99, 17)
+        Me.SteamOnlyCheck.TabIndex = 5
+        Me.SteamOnlyCheck.Text = "Steam app only"
+        Me.SteamOnlyCheck.UseVisualStyleBackColor = True
+        '
+        'WebProtCheck
+        '
+        Me.WebProtCheck.AutoSize = True
+        Me.WebProtCheck.Location = New System.Drawing.Point(108, 29)
+        Me.WebProtCheck.Name = "WebProtCheck"
+        Me.WebProtCheck.Size = New System.Drawing.Size(99, 17)
+        Me.WebProtCheck.TabIndex = 5
+        Me.WebProtCheck.Text = "Web protection"
+        Me.WebProtCheck.UseVisualStyleBackColor = True
         '
         'MinimizeCheck
         '
@@ -121,7 +155,7 @@ Partial Class Form1
         Me.SRTab.Location = New System.Drawing.Point(4, 22)
         Me.SRTab.Name = "SRTab"
         Me.SRTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.SRTab.Size = New System.Drawing.Size(212, 72)
+        Me.SRTab.Size = New System.Drawing.Size(212, 93)
         Me.SRTab.TabIndex = 1
         Me.SRTab.Text = "SteamRep"
         Me.SRTab.UseVisualStyleBackColor = True
@@ -148,14 +182,36 @@ Partial Class Form1
         '
         'TradesTab
         '
+        Me.TradesTab.Controls.Add(Me.TradeTfCheck)
+        Me.TradesTab.Controls.Add(Me.LockTradesCheck)
         Me.TradesTab.Controls.Add(Me.TradesEnabledCheck)
         Me.TradesTab.Location = New System.Drawing.Point(4, 22)
         Me.TradesTab.Name = "TradesTab"
         Me.TradesTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.TradesTab.Size = New System.Drawing.Size(212, 72)
+        Me.TradesTab.Size = New System.Drawing.Size(212, 93)
         Me.TradesTab.TabIndex = 3
         Me.TradesTab.Text = "Trades"
         Me.TradesTab.UseVisualStyleBackColor = True
+        '
+        'TradeTfCheck
+        '
+        Me.TradeTfCheck.AutoSize = True
+        Me.TradeTfCheck.Location = New System.Drawing.Point(98, 6)
+        Me.TradeTfCheck.Name = "TradeTfCheck"
+        Me.TradeTfCheck.Size = New System.Drawing.Size(63, 17)
+        Me.TradeTfCheck.TabIndex = 4
+        Me.TradeTfCheck.Text = "Trade.tf"
+        Me.TradeTfCheck.UseVisualStyleBackColor = True
+        '
+        'LockTradesCheck
+        '
+        Me.LockTradesCheck.AutoSize = True
+        Me.LockTradesCheck.Location = New System.Drawing.Point(6, 29)
+        Me.LockTradesCheck.Name = "LockTradesCheck"
+        Me.LockTradesCheck.Size = New System.Drawing.Size(82, 17)
+        Me.LockTradesCheck.TabIndex = 3
+        Me.LockTradesCheck.Text = "Lock trades"
+        Me.LockTradesCheck.UseVisualStyleBackColor = True
         '
         'TradesEnabledCheck
         '
@@ -176,7 +232,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(220, 98)
+        Me.ClientSize = New System.Drawing.Size(220, 119)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.SCEPTabControl)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -213,5 +269,10 @@ Partial Class Form1
     Friend WithEvents StartupCheck As System.Windows.Forms.CheckBox
     Friend WithEvents MinimizeCheck As System.Windows.Forms.CheckBox
     Friend WithEvents SCEPNotifyIcon As System.Windows.Forms.NotifyIcon
+    Friend WithEvents LockTradesCheck As System.Windows.Forms.CheckBox
+    Friend WithEvents TradeTfCheck As System.Windows.Forms.CheckBox
+    Friend WithEvents ReportLink As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents WebProtCheck As System.Windows.Forms.CheckBox
+    Friend WithEvents SteamOnlyCheck As System.Windows.Forms.CheckBox
 
 End Class
